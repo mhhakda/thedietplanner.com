@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Get in touch with TheDietPlanner team. We're here to help with your nutrition questions and feedback.">
+    <title>Contact Us | TheDietPlanner</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥗</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-12);
+        }
+
+        @media (min-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-8);
+        }
+
+        .contact-item {
+            display: flex;
+            gap: var(--space-4);
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-card);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-xl);
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-1);
+        }
+
+        .contact-details p {
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+        }
+
+        .contact-details a {
+            color: var(--accent-purple);
+            transition: var(--transition-fast);
+        }
+
+        .contact-details a:hover {
+            color: var(--accent-emerald);
+        }
+
+        .contact-form-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-10);
+        }
+
+        .faq-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--space-4);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: var(--space-5);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+
+        .faq-question:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .faq-answer {
+            padding: 0 var(--space-5) var(--space-5);
+            color: var(--text-secondary);
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-icon {
+            transition: var(--transition-fast);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="navbar-inner">
+                <a href="index.html" class="navbar-logo">
+                    <img src="images/Screenshot_2026-01-06-22-41-13-83_c1ebbaff44ba152fb7f7c2e1f7129fd11.jpg"
+                        onerror="this.src='images/logo.svg'" alt="TheDietPlanner Logo" class="logo-image">
+                    <span>TheDietPlanner</span>
+                </a>
+                <ul class="navbar-menu">
+                    <li><a href="index.html" class="navbar-link">Home</a></li>
+                    <li><a href="about.html" class="navbar-link">About</a></li>
+                    <li><a href="diet-plans/index.html" class="navbar-link">Blog</a></li>
+                    <li><a href="contact.html" class="navbar-link active">Contact</a></li>
+                    <li><a href="https://app.thedietplanner.com" class="navbar-link">TheDietPlanner App</a></li>
+                </ul>
+                <div class="navbar-cta">
+                    <a href="https://app.thedietplanner.com" class="btn btn-primary">Get Started Free</a>
+                </div>
+                <button class="navbar-toggle" id="navbarToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html" class="navbar-link">Home</a>
+        <a href="about.html" class="navbar-link">About</a>
+        <a href="diet-plans/index.html" class="navbar-link">Blog</a>
+        <a href="contact.html" class="navbar-link active">Contact</a>
+        <a href="https://app.thedietplanner.com" class="navbar-link">TheDietPlanner App</a>
+        <a href="https://app.thedietplanner.com" class="btn btn-primary" style="margin-top: 1rem;">Get Started Free</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 50vh; padding-top: 120px;">
+        <div class="hero-bg"></div>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge scroll-slide-up">
+                    <span class="hero-badge-dot"></span>
+                    <span>We'd Love to Hear From You</span>
+                </span>
+                <h1 class="hero-title scroll-slide-up">Get in <span class="text-gradient">Touch</span></h1>
+                <p class="hero-subtitle scroll-slide-up">Have questions, suggestions, or just want to share your success
+                    story? We're here to help!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Info -->
+                <div class="contact-info scroll-slide-left">
+                    <div>
+                        <h2 style="margin-bottom: var(--space-4);">Let's <span class="text-gradient">Connect</span></h2>
+                        <p style="color: var(--text-secondary); margin-bottom: var(--space-8);">We're always excited to
+                            hear from our community. Whether you have a question about our services or want to share
+                            feedback, don't hesitate to reach out.</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h4>Email Us</h4>
+                            <p><a href="mailto:support@thedietplanner.com">support@thedietplanner.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <h4>Follow Us</h4>
+                            <p><a href="https://instagram.com/thedietplanner01" target="_blank">@thedietplanner01</a> on
+                                Instagram</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div class="contact-details">
+                            <h4>Website</h4>
+                            <p><a href="https://thedietplanner.com">www.thedietplanner.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">⏰</div>
+                        <div class="contact-details">
+                            <h4>Response Time</h4>
+                            <p>We typically respond within 24-48 hours</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-card scroll-slide-right">
+                    <h3 style="margin-bottom: var(--space-6);">Send Us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Your Name</label>
+                            <input type="text" id="name" class="form-input" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address</label>
+                            <input type="email" id="email" class="form-input" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-input" placeholder="How can we help?">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message</label>
+                            <textarea id="message" class="form-textarea" placeholder="Tell us more..."
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section"
+        style="background: linear-gradient(180deg, transparent 0%, rgba(102, 126, 234, 0.03) 50%, transparent 100%);">
+        <div class="container container-sm">
+            <div class="section-header">
+                <span class="overline scroll-slide-up">FAQ</span>
+                <h2 class="scroll-slide-up">Frequently Asked <span class="text-gradient">Questions</span></h2>
+            </div>
+
+            <div class="scroll-slide-up">
+                <div class="faq-item active">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Is TheDietPlanner really free?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! Our core diet planning tools, calorie calculator, and basic meal plans are completely free.
+                        We believe everyone deserves access to quality nutrition guidance.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do I get a personalized diet plan?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Simply visit our Diet Planner App, enter your details like age, dietary preferences, and health
+                        goals, and we'll generate a customized plan just for you!
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do you offer vegetarian meal plans?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely! We offer both vegetarian and non-vegetarian options. Our system lets you choose your
+                        dietary preferences to create the perfect plan for you.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I download my meal plans?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! All our meal plans are available for download in PDF format. You can print them or save
+                        them on your device for easy reference.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Is your nutrition advice medically approved?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Our content is based on nutritional science and research. However, we always recommend
+                        consulting with healthcare professionals before making significant changes to your diet.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="navbar-logo">
+                        <img src="images/Screenshot_2026-01-06-22-41-13-83_c1ebbaff44ba152fb7f7c2e1f7129fd11.jpg"
+                            onerror="this.src='images/logo.svg'" alt="TheDietPlanner Logo" class="logo-image">
+                        <span>TheDietPlanner</span>
+                    </a>
+                    <p>Your trusted companion on the journey to better health and nutrition.</p>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://app.thedietplanner.com">Diet Planner App</a></li>
+                        <li><a href="https://app.thedietplanner.com/#nutritionCalculator">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://thedietplanner.com/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="https://thedietplanner.com/terms-and-conditions">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TheDietPlanner. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script>
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            item.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>
