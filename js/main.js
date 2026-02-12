@@ -6,7 +6,112 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initSmoothScroll();
     initNewsletterForm();
+    initHeroSlider();
 });
+
+// Hero Slider
+function initHeroSlider() {
+    const slider = document.getElementById('heroSlider');
+    if (!slider) return;
+
+    const track = slider.querySelector('.hero-track');
+    const slides = slider.querySelectorAll('.hero-slide');
+    const dots = slider.querySelectorAll('.hero-dot');
+    const prevBtn = document.getElementById('heroPrev');
+    const nextBtn = document.getElementById('heroNext');
+    const progressBar = document.getElementById('heroProgress');
+
+    let current = 0;
+    const total = slides.length;
+    const INTERVAL = 5000; // 5 seconds per slide
+    let autoplayTimer = null;
+    let progressTimer = null;
+    let progressStart = 0;
+    let paused = false;
+
+    function goTo(index) {
+        current = ((index % total) + total) % total; // wrap around
+        track.style.transform = `translateX(-${current * 20}%)`;
+        slides.forEach(s => s.classList.remove('active'));
+        slides[current].classList.add('active');
+        dots.forEach(d => d.classList.remove('active'));
+        dots[current].classList.add('active');
+        resetProgress();
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    // Progress bar
+    function resetProgress() {
+        if (progressBar) progressBar.style.width = '0%';
+        progressStart = Date.now();
+        clearInterval(progressTimer);
+        progressTimer = setInterval(() => {
+            if (paused) return;
+            const elapsed = Date.now() - progressStart;
+            const pct = Math.min((elapsed / INTERVAL) * 100, 100);
+            if (progressBar) progressBar.style.width = pct + '%';
+        }, 30);
+    }
+
+    // Auto-play
+    function startAutoplay() {
+        stopAutoplay();
+        autoplayTimer = setInterval(() => {
+            if (!paused) next();
+        }, INTERVAL);
+        resetProgress();
+    }
+
+    function stopAutoplay() {
+        clearInterval(autoplayTimer);
+        clearInterval(progressTimer);
+    }
+
+    // Event listeners
+    if (prevBtn) prevBtn.addEventListener('click', () => { prev(); startAutoplay(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { next(); startAutoplay(); });
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            goTo(parseInt(dot.dataset.dot));
+            startAutoplay();
+        });
+    });
+
+    // Pause on hover (desktop)
+    slider.addEventListener('mouseenter', () => { paused = true; });
+    slider.addEventListener('mouseleave', () => { paused = false; progressStart = Date.now() - (Date.now() - progressStart); });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        paused = true;
+    }, { passive: true });
+
+    slider.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) next(); else prev();
+        }
+        paused = false;
+        startAutoplay();
+    }, { passive: true });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { prev(); startAutoplay(); }
+        if (e.key === 'ArrowRight') { next(); startAutoplay(); }
+    });
+
+    // Start
+    startAutoplay();
+}
 
 // Navbar scroll effect
 function initNavbar() {
