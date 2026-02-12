@@ -1434,3 +1434,276 @@ h6 {
 .stagger-6 {
   transition-delay: 0.6s;
 }
+
+/* ========================================
+   Mobile Responsive Overrides
+   ======================================== */
+@media (max-width: 768px) {
+
+  /* --- Hero Section --- */
+  .hero {
+    min-height: auto;
+    padding: var(--space-16) 0 var(--space-10);
+  }
+
+  .hero-content {
+    padding: 0 var(--space-2);
+  }
+
+  .hero-title {
+    font-size: var(--text-4xl) !important;
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-base) !important;
+    margin-bottom: var(--space-6) !important;
+    line-height: 1.6;
+  }
+
+  .hero-badge {
+    font-size: var(--text-xs);
+    padding: var(--space-1) var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-buttons {
+    gap: var(--space-3);
+  }
+
+  .hero-buttons .btn-lg {
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-sm);
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+
+  /* Blobs – smaller on mobile */
+  .blob-1 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .blob-2 {
+    width: 150px;
+    height: 150px;
+  }
+
+  .blob-3 {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* --- Sections General --- */
+  .section {
+    padding: var(--space-12) 0;
+  }
+
+  .features,
+  .how-it-works,
+  .testimonials,
+  .cta {
+    padding: var(--space-12) 0;
+  }
+
+  .section-header {
+    margin-bottom: var(--space-8);
+  }
+
+  .section-header h2 {
+    font-size: var(--text-3xl);
+  }
+
+  .section-header p {
+    font-size: var(--text-base);
+  }
+
+  .section-header .overline {
+    font-size: var(--text-xs);
+    margin-bottom: var(--space-2);
+  }
+
+  /* --- Cards --- */
+  .card {
+    padding: var(--space-5);
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .card-title {
+    font-size: var(--text-lg);
+  }
+
+  .card-description {
+    font-size: var(--text-xs);
+    line-height: 1.6;
+  }
+
+  /* --- Steps --- */
+  .step-number {
+    width: 60px;
+    height: 60px;
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .step-title {
+    font-size: var(--text-lg);
+  }
+
+  .step-description {
+    font-size: var(--text-xs);
+  }
+
+  /* --- Testimonials --- */
+  .testimonial-card {
+    padding: var(--space-5);
+  }
+
+  .testimonial-text {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-4);
+  }
+
+  .testimonial-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: var(--text-base);
+  }
+
+  .testimonial-info h4 {
+    font-size: var(--text-sm);
+  }
+
+  .testimonial-info p {
+    font-size: var(--text-xs);
+  }
+
+  /* --- CTA Section --- */
+  .cta-card {
+    padding: var(--space-8) var(--space-5);
+    border-radius: var(--radius-xl);
+  }
+
+  .cta-content h2 {
+    font-size: var(--text-2xl);
+  }
+
+  .cta-content p {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-5);
+  }
+
+  .cta-form input {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-sm);
+  }
+
+  .cta-form button {
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-sm);
+  }
+
+  /* --- Footer --- */
+  .footer {
+    padding: var(--space-10) 0 var(--space-6);
+  }
+
+  .footer-grid {
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+  }
+
+  .footer-brand p {
+    max-width: 100%;
+  }
+
+  .footer-bottom-links {
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* --- Container Padding --- */
+  .container {
+    padding: 0 var(--space-4);
+  }
+
+  /* --- Typography --- */
+  h1 {
+    font-size: var(--text-4xl);
+  }
+
+  h2 {
+    font-size: var(--text-3xl);
+  }
+
+  h3 {
+    font-size: var(--text-2xl);
+  }
+
+  h4 {
+    font-size: var(--text-xl);
+  }
+}
+
+/* ===== Extra Small Screens ===== */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: var(--text-3xl) !important;
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-sm) !important;
+  }
+
+  .section-header h2 {
+    font-size: var(--text-2xl);
+  }
+
+  h1 {
+    font-size: var(--text-3xl);
+  }
+
+  h2 {
+    font-size: var(--text-2xl);
+  }
+
+  h3 {
+    font-size: var(--text-xl);
+  }
+
+  .card {
+    padding: var(--space-4);
+  }
+
+  .testimonial-card {
+    padding: var(--space-4);
+  }
+
+  .cta-card {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .cta-content h2 {
+    font-size: var(--text-xl);
+  }
+
+  .navbar-logo span {
+    font-size: var(--text-base);
+  }
+
+  .navbar-logo .logo-image {
+    width: 32px;
+    height: 32px;
+  }
+}
