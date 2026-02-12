@@ -785,6 +785,26 @@ h6 {
   color: var(--text-primary);
 }
 
+/* Light mode override for mobile menu — placed after base styles for guaranteed cascade */
+@media (prefers-color-scheme: light) {
+  .mobile-menu {
+    background: #ffffff !important;
+    border-top: 1px solid rgba(13, 148, 136, 0.1);
+  }
+
+  .mobile-menu .navbar-link {
+    color: #1e293b !important;
+  }
+
+  .mobile-menu .navbar-link:hover {
+    color: #0d9488 !important;
+  }
+
+  .mobile-menu .btn-primary {
+    color: #ffffff !important;
+  }
+}
+
 /* ========================================
    Buttons
    ======================================== */
