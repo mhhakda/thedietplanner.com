@@ -164,11 +164,16 @@
 
   /* --- Mobile Menu --- */
   .mobile-menu {
-    background: rgba(255, 255, 255, 0.98) !important;
+    background: #f8fafb !important;
   }
 
-  .mobile-menu a {
+  .mobile-menu a,
+  .mobile-menu .navbar-link {
     color: #0f172a !important;
+  }
+
+  .mobile-menu .btn {
+    color: #ffffff !important;
   }
 
   /* --- Hero --- */
@@ -758,7 +763,7 @@ h6 {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(15, 15, 26, 0.98);
+  background: var(--bg-dark);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: var(--space-8);
@@ -777,6 +782,7 @@ h6 {
 .mobile-menu .navbar-link {
   font-size: var(--text-lg);
   padding: var(--space-3) 0;
+  color: var(--text-primary);
 }
 
 /* ========================================
