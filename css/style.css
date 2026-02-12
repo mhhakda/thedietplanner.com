@@ -108,6 +108,224 @@
 }
 
 /* ========================================
+   Light Mode (Auto-adaptive)
+   ======================================== */
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Primary Gradients — slightly adjusted for light backgrounds */
+    --gradient-hero: linear-gradient(135deg, #f0fdfa 0%, #ecfeff 50%, #f0f9ff 100%);
+    --gradient-card: linear-gradient(135deg, rgba(13, 148, 136, 0.06) 0%, rgba(6, 182, 212, 0.06) 100%);
+
+    /* Base Colors */
+    --bg-dark: #f8fafb;
+    --bg-darker: #eef2f5;
+    --bg-card: rgba(0, 0, 0, 0.02);
+    --bg-card-hover: rgba(13, 148, 136, 0.08);
+
+    /* Text Colors */
+    --text-primary: #0f172a;
+    --text-secondary: rgba(15, 23, 42, 0.7);
+    --text-muted: rgba(15, 23, 42, 0.45);
+    --text-accent: #0d9488;
+
+    /* Glass Effect — Light mode */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(13, 148, 136, 0.15);
+    --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  /* --- Navbar --- */
+  .navbar.scrolled {
+    background: rgba(248, 250, 251, 0.92);
+    border-bottom-color: rgba(13, 148, 136, 0.1);
+  }
+
+  .navbar-toggle span {
+    background: var(--text-primary);
+  }
+
+  /* --- Mobile Menu --- */
+  .mobile-menu {
+    background: rgba(248, 250, 251, 0.98);
+  }
+
+  /* --- Hero --- */
+  .hero-bg::before {
+    background: radial-gradient(circle at 30% 50%, rgba(13, 148, 136, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 70% 50%, rgba(6, 182, 212, 0.06) 0%, transparent 50%);
+  }
+
+  .blob-1 {
+    background: rgba(13, 148, 136, 0.15);
+  }
+
+  .blob-2 {
+    background: rgba(6, 182, 212, 0.12);
+  }
+
+  .blob-3 {
+    background: rgba(34, 211, 238, 0.1);
+  }
+
+  .hero-badge {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(13, 148, 136, 0.15);
+  }
+
+  /* --- Buttons --- */
+  .btn-primary {
+    color: #ffffff;
+  }
+
+  .btn-secondary {
+    color: #ffffff;
+  }
+
+  .btn-outline {
+    border-color: rgba(13, 148, 136, 0.25);
+    color: var(--text-primary);
+  }
+
+  .btn-outline:hover {
+    background: rgba(13, 148, 136, 0.06);
+    border-color: var(--accent-emerald);
+  }
+
+  /* --- Cards --- */
+  .card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-color: rgba(13, 148, 136, 0.1);
+  }
+
+  .card:hover {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 30px rgba(13, 148, 136, 0.1);
+  }
+
+  .card-icon.purple {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(30, 58, 138, 0.08) 100%);
+  }
+
+  .card-icon.emerald {
+    background: linear-gradient(135deg, rgba(45, 212, 191, 0.12) 0%, rgba(13, 148, 136, 0.08) 100%);
+  }
+
+  .card-icon.orange {
+    background: linear-gradient(135deg, rgba(13, 148, 136, 0.12) 0%, rgba(6, 182, 212, 0.08) 100%);
+  }
+
+  /* --- Steps --- */
+  .step-number {
+    color: #ffffff;
+  }
+
+  /* --- Testimonials --- */
+  .testimonial-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-color: rgba(13, 148, 136, 0.1);
+  }
+
+  .testimonial-card:hover {
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .testimonial-avatar {
+    color: #ffffff;
+  }
+
+  /* --- CTA --- */
+  .cta-card {
+    color: #ffffff;
+  }
+
+  .cta-form input {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+  }
+
+  .cta-form input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* --- Footer --- */
+  .footer {
+    background: #eef2f5;
+    border-top-color: rgba(13, 148, 136, 0.1);
+  }
+
+  /* --- Glass in general --- */
+  .btn-glass {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(13, 148, 136, 0.12);
+  }
+
+  .btn-glass:hover {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  /* --- Forms --- */
+  .form-input,
+  .form-textarea {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(13, 148, 136, 0.15);
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    border-color: var(--accent-emerald);
+    box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.08);
+  }
+
+  /* --- Social Icons --- */
+  .footer-social a {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(13, 148, 136, 0.12);
+  }
+
+  .footer-social a:hover {
+    color: #ffffff;
+  }
+
+  /* --- Logo text --- */
+  .navbar-logo span {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* --- Text gradient (keep vibrant in light mode) --- */
+  .text-gradient {
+    background: linear-gradient(135deg, #0d9488 0%, #0891b2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-emerald {
+    background: linear-gradient(135deg, #0d9488 0%, #0e7490 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* --- Section divider --- */
+  .features::before {
+    background: linear-gradient(90deg, transparent, rgba(13, 148, 136, 0.15), transparent);
+  }
+
+  /* --- How it works section --- */
+  .how-it-works {
+    background: linear-gradient(180deg, transparent 0%, rgba(13, 148, 136, 0.03) 50%, transparent 100%);
+  }
+}
+
+/* ========================================
    CSS Reset & Base Styles
    ======================================== */
 *,
