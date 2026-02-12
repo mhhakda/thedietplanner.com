@@ -44,6 +44,7 @@
             max-width: 1100px;
             margin: 0 auto;
             align-items: start;
+            overflow: hidden;
         }
 
         /* Section Nav */
@@ -107,6 +108,8 @@
             font-size: var(--text-lg);
             line-height: 1.8;
             color: var(--text-secondary);
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
 
         .blog-body h2 {
@@ -326,6 +329,7 @@
         @media (max-width: 900px) {
             .blog-layout {
                 grid-template-columns: 1fr;
+                max-width: 100%;
             }
 
             /* Hide desktop sidebar on mobile */
@@ -392,19 +396,22 @@
                 margin-top: var(--space-5);
             }
 
-            /* Horizontally scrollable tables */
+            /* Tables on mobile - wrap text to fit viewport */
             .blog-body table {
-                display: block;
+                display: table;
+                width: 100%;
+                table-layout: fixed;
                 overflow-x: auto;
-                white-space: nowrap;
                 -webkit-overflow-scrolling: touch;
                 font-size: var(--text-sm);
+                word-break: break-word;
             }
 
             .blog-body th,
             .blog-body td {
                 padding: var(--space-2);
-                min-width: 100px;
+                white-space: normal;
+                word-break: break-word;
             }
 
             .blog-body blockquote {
@@ -428,6 +435,31 @@
 
             .back-link {
                 margin-bottom: var(--space-4);
+            }
+
+            /* Prevent overflow from any element */
+            .blog-content-wrapper {
+                padding: var(--space-4);
+                border-radius: var(--radius-xl);
+                max-width: 100%;
+                overflow: hidden;
+            }
+
+            .blog-header {
+                padding-top: 100px;
+                padding-bottom: var(--space-6);
+                overflow: hidden;
+            }
+
+            .blog-header .hero-title {
+                font-size: var(--text-2xl) !important;
+                word-break: break-word;
+            }
+
+            /* Featured image smaller on mobile */
+            .blog-content-wrapper>div:first-child {
+                height: 180px !important;
+                font-size: 3rem !important;
             }
         }
 
