@@ -201,16 +201,247 @@
             box-shadow: 0 6px 20px rgba(255, 153, 0, 0.5);
         }
 
+        /* ===== Floating TOC Button (mobile only) ===== */
+        .toc-fab {
+            display: none;
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+            background: var(--gradient-primary);
+            color: #111;
+            border: none;
+            border-radius: var(--radius-full);
+            padding: 14px 22px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(34, 211, 238, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .toc-fab:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(34, 211, 238, 0.5);
+        }
+
+        /* ===== Slide-up Drawer (mobile only) ===== */
+        .toc-drawer-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .toc-drawer-overlay.open {
+            opacity: 1;
+        }
+
+        .toc-drawer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+            background: var(--bg-dark);
+            border-top: 1px solid var(--glass-border);
+            border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+            max-height: 70vh;
+            transform: translateY(100%);
+            transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: none;
+            flex-direction: column;
+        }
+
+        .toc-drawer.open {
+            transform: translateY(0);
+        }
+
+        .toc-drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px 12px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .toc-drawer-header h4 {
+            font-size: 1rem;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0;
+        }
+
+        .toc-drawer-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: var(--radius-md);
+            line-height: 1;
+        }
+
+        .toc-drawer-close:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .toc-drawer-body {
+            overflow-y: auto;
+            padding: 12px 20px 24px;
+        }
+
+        .toc-drawer-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 12px;
+        }
+
+        .toc-drawer-body a {
+            display: block;
+            padding: 10px 12px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            transition: all 0.15s ease;
+            line-height: 1.3;
+        }
+
+        .toc-drawer-body a:hover,
+        .toc-drawer-body a.active {
+            color: var(--primary);
+            background: rgba(34, 211, 238, 0.08);
+        }
+
+        /* ===== Mobile Responsive ===== */
         @media (max-width: 900px) {
             .blog-layout {
                 grid-template-columns: 1fr;
             }
 
+            /* Hide desktop sidebar on mobile */
             .section-nav {
-                position: relative;
-                top: 0;
-                max-height: none;
-                margin-bottom: var(--space-6);
+                display: none;
+            }
+
+            /* Show floating button & drawer on mobile */
+            .toc-fab {
+                display: block;
+            }
+
+            .toc-drawer-overlay,
+            .toc-drawer {
+                display: flex;
+            }
+
+            .toc-drawer-overlay {
+                display: block;
+                pointer-events: none;
+                opacity: 0;
+            }
+
+            .toc-drawer-overlay.open {
+                pointer-events: auto;
+                opacity: 1;
+            }
+
+            /* Blog header mobile */
+            .blog-header {
+                padding-top: 100px;
+                padding-bottom: var(--space-6);
+            }
+
+            .blog-header .hero-title {
+                font-size: var(--text-2xl) !important;
+                line-height: 1.3;
+            }
+
+            .blog-meta-header {
+                flex-wrap: wrap;
+                gap: var(--space-2);
+            }
+
+            /* Blog content mobile */
+            .blog-content-wrapper {
+                padding: var(--space-4);
+                border-radius: var(--radius-xl);
+            }
+
+            .blog-body {
+                font-size: var(--text-base);
+                line-height: 1.7;
+            }
+
+            .blog-body h2 {
+                font-size: var(--text-xl);
+                margin-top: var(--space-8);
+                word-break: break-word;
+            }
+
+            .blog-body h3 {
+                font-size: var(--text-lg);
+                margin-top: var(--space-5);
+            }
+
+            /* Horizontally scrollable tables */
+            .blog-body table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                font-size: var(--text-sm);
+            }
+
+            .blog-body th,
+            .blog-body td {
+                padding: var(--space-2);
+                min-width: 100px;
+            }
+
+            .blog-body blockquote {
+                padding: var(--space-3) var(--space-4);
+                margin: var(--space-4) 0;
+                font-size: var(--text-base);
+            }
+
+            .blog-body ul,
+            .blog-body ol {
+                padding-left: var(--space-4);
+            }
+
+            .amazon-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
+            }
+
+            .back-link {
+                margin-bottom: var(--space-4);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .toc-drawer-body ul {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-body h2 {
+                font-size: var(--text-lg);
+            }
+
+            .blog-body {
+                font-size: var(--text-sm);
             }
         }
     </style>
@@ -1102,34 +1333,112 @@
         </div>
     </footer>
 
+    <!-- Mobile TOC Floating Button -->
+    <button class="toc-fab" id="tocFab" aria-label="Table of Contents">📑 Contents</button>
+
+    <!-- Mobile TOC Drawer -->
+    <div class="toc-drawer-overlay" id="tocOverlay"></div>
+    <div class="toc-drawer" id="tocDrawer">
+        <div class="toc-drawer-header">
+            <h4>Contents</h4>
+            <button class="toc-drawer-close" id="tocClose" aria-label="Close">✕</button>
+        </div>
+        <div class="toc-drawer-body">
+            <ul>
+                <li><a href="#quick-verdict">Quick Verdict</a></li>
+                <li><a href="#origin">Origin Story</a></li>
+                <li><a href="#who-benefits">Who Benefits</a></li>
+                <li><a href="#public-benefit">Public Benefit</a></li>
+                <li><a href="#standard-formula">Standard Formula</a></li>
+                <li><a href="#zero-sugar">Zero Sugar</a></li>
+                <li><a href="#flavors">Flavors</a></li>
+                <li><a href="#nutrition">Nutrition Facts</a></li>
+                <li><a href="#ors-science">ORS Science</a></li>
+                <li><a href="#cotransport">Cotransport</a></li>
+                <li><a href="#vs-who">vs WHO ORS</a></li>
+                <li><a href="#absorption">Absorption Rate</a></li>
+                <li><a href="#taste">Taste &amp; Mix</a></li>
+                <li><a href="#effectiveness">Effectiveness</a></li>
+                <li><a href="#travel">Travel Use</a></li>
+                <li><a href="#illness">Illness Recovery</a></li>
+                <li><a href="#safety">Health &amp; Safety</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#comparison">vs Competitors</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#pros-cons">Pros &amp; Cons</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#who-should-buy">Who Should Buy</a></li>
+                <li><a href="#final">Final Verdict</a></li>
+            </ul>
+        </div>
+    </div>
+
     <script src="../js/main.js"></script>
     <script src="../js/animations.js"></script>
 
-    <!-- Section Nav Active State Script -->
+    <!-- Section Nav + Mobile Drawer Script -->
     <script>
         (function () {
-            const navLinks = document.querySelectorAll('.section-nav a');
+            // --- Active section tracking (for desktop sidebar + mobile drawer) ---
+            const allNavLinks = document.querySelectorAll('.section-nav a, .toc-drawer-body a');
+            const sectionIds = new Set();
             const sections = [];
 
-            navLinks.forEach(link => {
+            allNavLinks.forEach(link => {
                 const id = link.getAttribute('href').substring(1);
-                const el = document.getElementById(id);
-                if (el) sections.push({ id, el, link });
+                if (!sectionIds.has(id)) {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        sections.push({ id, el });
+                        sectionIds.add(id);
+                    }
+                }
             });
 
             function updateActive() {
-                let current = sections[0];
+                let currentId = sections[0]?.id;
                 for (const s of sections) {
                     if (s.el.getBoundingClientRect().top <= 120) {
-                        current = s;
+                        currentId = s.id;
                     }
                 }
-                navLinks.forEach(l => l.classList.remove('active'));
-                if (current) current.link.classList.add('active');
+                allNavLinks.forEach(l => {
+                    const linkId = l.getAttribute('href').substring(1);
+                    l.classList.toggle('active', linkId === currentId);
+                });
             }
 
             window.addEventListener('scroll', updateActive, { passive: true });
             updateActive();
+
+            // --- Mobile TOC Drawer ---
+            const fab = document.getElementById('tocFab');
+            const drawer = document.getElementById('tocDrawer');
+            const overlay = document.getElementById('tocOverlay');
+            const closeBtn = document.getElementById('tocClose');
+
+            function openDrawer() {
+                drawer.classList.add('open');
+                overlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeDrawer() {
+                drawer.classList.remove('open');
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            fab.addEventListener('click', openDrawer);
+            closeBtn.addEventListener('click', closeDrawer);
+            overlay.addEventListener('click', closeDrawer);
+
+            // Close drawer when user clicks a link
+            document.querySelectorAll('.toc-drawer-body a').forEach(link => {
+                link.addEventListener('click', () => {
+                    closeDrawer();
+                });
+            });
         })();
     </script>
 </body>
