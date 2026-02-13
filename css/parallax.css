@@ -1,0 +1,255 @@
+/* ========================================
+   Parallax Storytelling — CSS Layer
+   GPU-optimized transforms + CSS fallbacks
+   ======================================== */
+
+/* ---- GPU Performance Hints ---- */
+.parallax-layer,
+.hero-slide .hero-content>*,
+.card,
+.step,
+.testimonial-card,
+.cta-card {
+    will-change: transform, opacity;
+}
+
+.blob {
+    will-change: transform;
+}
+
+/* ---- Hero Carousel Parallax Layers ---- */
+.hero-slide .hero-badge {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.hero-slide .hero-slide-icon {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.hero-slide .hero-title {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+}
+
+.hero-slide .hero-subtitle {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.hero-slide .hero-pill {
+    opacity: 0;
+    transform: translateY(15px) scale(0.9);
+}
+
+.hero-slide .hero-buttons {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Active slide — CSS-only fallback when no GSAP */
+.no-gsap .hero-slide.active .hero-badge,
+.no-gsap .hero-slide.active .hero-slide-icon,
+.no-gsap .hero-slide.active .hero-title,
+.no-gsap .hero-slide.active .hero-subtitle,
+.no-gsap .hero-slide.active .hero-pill,
+.no-gsap .hero-slide.active .hero-buttons {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+    transition: all 0.6s ease;
+}
+
+/* ---- Features Section Parallax Layers ---- */
+.features .card {
+    transform-style: preserve-3d;
+    perspective: 800px;
+}
+
+.features .card-icon {
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.features .card:hover .card-icon {
+    transform: rotateX(-8deg) rotateY(8deg) scale(1.1);
+}
+
+/* ---- How It Works — Alternating Slide ---- */
+.steps {
+    position: relative;
+}
+
+/* Connecting line between steps */
+.steps::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 0%;
+    background: var(--gradient-primary);
+    transition: height 1.2s ease;
+    z-index: 0;
+    opacity: 0.3;
+}
+
+.steps.line-drawn::before {
+    height: calc(100% - 80px);
+}
+
+.step {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---- Testimonials — Float Entrance ---- */
+.testimonial-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-6px) rotateX(2deg) rotateY(-2deg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.testimonial-stars svg {
+    transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+/* ---- CTA Section — Zoom Reveal ---- */
+.cta-card {
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1),
+        box-shadow 0.6s ease;
+}
+
+/* ---- Parallax Depth Layers ---- */
+[data-speed] {
+    will-change: transform;
+}
+
+/* ---- No-JS / CSS Fallback Animations ---- */
+@keyframes parallaxFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes parallaxScaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes parallaxClipReveal {
+    from {
+        clip-path: inset(0 100% 0 0);
+        opacity: 0;
+    }
+
+    to {
+        clip-path: inset(0 0% 0 0);
+        opacity: 1;
+    }
+}
+
+@keyframes parallaxBounceIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    60% {
+        transform: translateY(-8px);
+    }
+
+    80% {
+        transform: translateY(3px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes starFillSweep {
+    from {
+        fill: transparent;
+        stroke: var(--accent-cyan);
+    }
+
+    to {
+        fill: var(--accent-cyan);
+        stroke: var(--accent-cyan);
+    }
+}
+
+/* CSS-only fallback: if GSAP fails to load */
+.no-gsap .hero-slide.active .hero-badge {
+    animation: parallaxFadeInUp 0.5s ease 0.1s forwards;
+}
+
+.no-gsap .hero-slide.active .hero-slide-icon {
+    animation: parallaxScaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
+}
+
+.no-gsap .hero-slide.active .hero-title {
+    animation: parallaxClipReveal 0.7s ease 0.3s forwards;
+}
+
+.no-gsap .hero-slide.active .hero-subtitle {
+    animation: parallaxFadeInUp 0.5s ease 0.5s forwards;
+}
+
+.no-gsap .hero-slide.active .hero-pill {
+    animation: parallaxFadeInUp 0.4s ease 0.6s forwards;
+}
+
+.no-gsap .hero-slide.active .hero-buttons {
+    animation: parallaxBounceIn 0.6s ease 0.8s forwards;
+}
+
+/* ---- Responsive Adjustments ---- */
+@media (max-width: 768px) {
+    .steps::before {
+        left: 24px;
+    }
+
+    .testimonial-card:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* ---- Reduced Motion ---- */
+@media (prefers-reduced-motion: reduce) {
+
+    .parallax-layer,
+    .hero-slide .hero-content>*,
+    .card,
+    .step,
+    .testimonial-card,
+    .cta-card,
+    [data-speed] {
+        will-change: auto !important;
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+        clip-path: none !important;
+    }
+}
