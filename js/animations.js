@@ -80,8 +80,13 @@ function animateCounter(element) {
     updateCounter();
 }
 
-// Parallax effect for hero section
+// Parallax effect for hero section (fallback when GSAP not available)
 function initParallax() {
+    // If GSAP + parallax-engine.js is loaded, it handles parallax
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        return; // GSAP parallax engine is in charge
+    }
+
     const hero = document.querySelector('.hero');
     const blobs = document.querySelectorAll('.blob');
 
