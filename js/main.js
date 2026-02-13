@@ -30,12 +30,30 @@ function initHeroSlider() {
     let paused = false;
 
     function goTo(index) {
+        const prevIndex = current;
         current = ((index % total) + total) % total; // wrap around
+
+        // GSAP exit animation on outgoing slide (if GSAP available)
+        if (prevIndex !== current && typeof window.createSlideExitTimeline === 'function') {
+            const exitTl = window.createSlideExitTimeline(slides[prevIndex]);
+            if (exitTl) {
+                exitTl.then(() => {
+                    slides[prevIndex].classList.remove('active');
+                });
+            }
+        }
+
         track.style.transform = `translateX(-${current * 20}%)`;
         slides.forEach(s => s.classList.remove('active'));
         slides[current].classList.add('active');
         dots.forEach(d => d.classList.remove('active'));
         dots[current].classList.add('active');
+
+        // GSAP entrance animation on incoming slide
+        if (typeof window.createSlideEntranceTimeline === 'function') {
+            window.createSlideEntranceTimeline(slides[current]);
+        }
+
         resetProgress();
     }
 
